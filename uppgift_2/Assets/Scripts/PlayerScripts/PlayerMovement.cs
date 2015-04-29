@@ -4,56 +4,34 @@ using XInputDotNetPure;
 
 public class PlayerMovement : MonoBehaviour {
 	Vector3 direction;
-	CharacterStat cs;
+	PlayerSuperScript pss;
 	Rigidbody rb;
 
 	float rotSpeed = 180;
 	Vector3 rotationVector;
 	Transform playerCamera;
 
-	bool playerIndexSet = false;
-	PlayerIndex pi;
-	GamePadState curState;
-	GamePadState prevState;
-
 	// Use this for initialization
 	void Start () {
 		direction = Vector3.zero;
 		playerCamera = transform.GetChild (0);
 		rotationVector = Vector3.zero;
-
-		cs = GetComponent<CharacterStat> ();
 		rb = GetComponent<Rigidbody> ();
 	}
-	
+
+	public void Setup(PlayerSuperScript playerSS){
+		pss = playerSS;
+	}
 	// Update is called once per frame
 	void Update () {
-
-		if (!playerIndexSet || !prevState.IsConnected) {
-		
-			for(int i=0; i<4;i++){
-				PlayerIndex testPlayerIndex = (PlayerIndex) i;
-				GamePadState testState = GamePad.GetState(testPlayerIndex);
-				if(testState.IsConnected){
-					pi = testPlayerIndex;
-					playerIndexSet = true;
-				}
-			}
-		}
-
-		prevState = curState;
-		curState = GamePad.GetState (pi);
-
-
-
-		direction.z = curState.ThumbSticks.Left.Y;
-		direction.x = curState.ThumbSticks.Left.X;
+		direction.z = pss.cds.getCurState().ThumbSticks.Left.Y;
+		direction.x = pss.cds.getCurState().ThumbSticks.Left.X;
 
 		direction.Normalize ();
 		direction *= Time.deltaTime;
 
-		rotationVector.x = -rotSpeed * curState.ThumbSticks.Right.Y;
-		rotationVector.y = rotSpeed * curState.ThumbSticks.Right.X;
+		rotationVector.x = -rotSpeed * pss.cds.getCurState().ThumbSticks.Right.Y;
+		rotationVector.y = rotSpeed * pss.cds.getCurState().ThumbSticks.Right.X;
 		rotationVector *= Time.deltaTime;
 		playerCamera.localEulerAngles = playerCamera.localEulerAngles + rotationVector;
 
@@ -68,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
 		//(Used mainly for rigidbody interactions that require a fixed update.) 
 
 		//Jumping
-		if (xInputCheckKeyState (prevState.Buttons.A, curState.Buttons.A) == 1) {
+		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.A, pss.cds.getCurState().Buttons.A) == 1) {
 			rb.AddForce(0,7.5f,0,ForceMode.Impulse);
 		}
 
