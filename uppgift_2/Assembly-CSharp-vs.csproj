@@ -46,13 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\3D modells\Players\Animation script\animation.cs" />
+     <Compile Include="Assets\Scripts\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\GenericScripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\MonsterMovement.cs" />
      <Compile Include="Assets\Scripts\MonsterScript\MonsterAttackScript.cs" />
      <Compile Include="Assets\Scripts\MonsterScript\MonsterMovement.cs" />
      <Compile Include="Assets\Scripts\MonsterScript\MonsterStat.cs" />
      <Compile Include="Assets\Scripts\MonsterScript\MonsterSuperScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\ControllerDetectionScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\PlayedRangedAttack.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\PlayerMeleeAttack.cs" />
      <Compile Include="Assets\Scripts\PlayerScripts\PlayerMovement.cs" />
@@ -65,7 +69,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="XInputDotNetPure">
- <HintPath>C:/Users/Calle/Documents/GitHub/Uppgift_2/uppgift_2/Assets/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
+ <HintPath>C:/Users/Laptop/Searches/Desktop/spelutväckling  3D/Uppgift_2/Uppgift_2/uppgift_2/Assets/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
