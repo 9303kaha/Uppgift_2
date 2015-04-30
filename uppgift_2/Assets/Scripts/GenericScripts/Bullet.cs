@@ -19,17 +19,14 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		if (c.gameObject.GetComponent<PlayerStat> ()) {
 			if	(c.gameObject.GetComponent<CharacterStat> ()){
 				CharacterStat cs = c.gameObject.GetComponent<CharacterStat>();
 				cs.Damage(damage);
 			}
-			if (c.gameObject.GetComponent<MonsterStat>()){
-				print (c.transform.name);
+			else if (c.transform.parent.gameObject.GetComponent<MonsterStat>()){
 				MonsterStat ms = c.transform.parent.gameObject.GetComponent<MonsterStat>();
 				ms.Damage(damage);
-			}
 		}
 		Destroy (gameObject);
-	}
+		}
 }
