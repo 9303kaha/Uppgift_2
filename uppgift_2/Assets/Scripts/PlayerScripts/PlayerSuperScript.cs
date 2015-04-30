@@ -7,14 +7,20 @@ public class PlayerSuperScript : MonoBehaviour {
 	public PlayerMovement pm;
 	public CharacterStat cs;
 	public PlayerAttack pa;
+	public HeadCameraScript hcs;
+	public PhaseTracker pt;
 
 	// Use this for initialization
 	void Start () {
 		cds = GetComponent<ControllerDetectionScript> ();
 		pm = GetComponent<PlayerMovement> ();
 		cs = GetComponent<CharacterStat> ();
+		pa = GetComponent<PlayerAttack> ();
+		hcs = GetComponentInChildren<HeadCameraScript> ();
+		pt = GameObject.Find ("PhaseTracker").GetComponent<PhaseTracker> ();
 
 		Setup ();
+		PostSetup ();
 	}
 
 	void Setup(){
@@ -22,10 +28,14 @@ public class PlayerSuperScript : MonoBehaviour {
 		pm.Setup (this);
 		cs.Setup (this);
 		pa.Setup (this);
+		hcs.Setup (this);
+	}
+
+	void PostSetup(){
+		pm.PostSetup ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 }

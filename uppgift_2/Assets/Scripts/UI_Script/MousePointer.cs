@@ -4,7 +4,6 @@ using System.Collections;
 public class MousePointer : MonoBehaviour {
 
 	public Canvas canvas;
-	public Camera camera;
 	Vector2 pos;
 
 	// Use this for initialization

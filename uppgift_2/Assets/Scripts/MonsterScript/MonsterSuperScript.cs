@@ -7,6 +7,7 @@ public class MonsterSuperScript : MonoBehaviour {
 	public MonsterMovement mm;
 	public MonsterStat ms;
 	public MonsterAttackScript mas;
+	public PhaseTracker pt;
 
 	void Start () {
 	
@@ -24,6 +25,7 @@ public class MonsterSuperScript : MonoBehaviour {
 		mm.Setup (this);
 		ms.Setup (this);
 		mas.Setup (this);
+		pt = GameObject.Find ("PhaseTracker").GetComponent<PhaseTracker> ();
 	
 	}
 

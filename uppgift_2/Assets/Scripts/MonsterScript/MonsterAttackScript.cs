@@ -33,8 +33,7 @@ public class MonsterAttackScript : MonoBehaviour {
 			hitPosition = hit.point;
 			targetDirection = hitPosition - transform.position;
 			targetDirection.Normalize();
-			cannon.position = transform.position + 0.5f * targetDirection; //rotates the cannon around the monster
-			cannon.LookAt(transform.position + targetDirection); //rotates the cannon around itself
+			cannon.LookAt(hitPosition); //rotates the cannon around itself
 			rotAngle = Mathf.Atan2(targetDirection.y, targetDirection.z);
 			if(targetDirection.y < 0 && targetDirection.z < 0){rotAngle -= Mathf.PI;}
 			rotAngle *= -180/Mathf.PI; //Determines the angle the cannon is rotated around itself
@@ -48,6 +47,8 @@ public class MonsterAttackScript : MonoBehaviour {
 
 	void Fire(){
 		Transform bullet = (Transform)Instantiate (bulletPrefab, cannon.position + cannon.forward * 0.3f, Quaternion.Euler (rotAngle, 0, 0) * bulletPrefab.transform.rotation);
+		bullet.GetComponent<Bullet> ().setDamage (3);
 		bullet.GetComponent<Rigidbody> ().AddForce (cannon.forward * bulletForce, ForceMode.Impulse);
 	}
 }
+		

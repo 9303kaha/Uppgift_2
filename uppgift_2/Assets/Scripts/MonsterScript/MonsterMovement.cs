@@ -7,6 +7,7 @@ public class MonsterMovement : MonoBehaviour {
 
 	int speed = 3;
 	Vector3 direction = Vector3.zero;
+	Vector3 lookatVector = Vector3.zero;
 	CharacterController cc;
 	// Use this for initialization
 	void Start () {
@@ -18,13 +19,18 @@ public class MonsterMovement : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
- 
-		direction.z = Input.GetAxis ("WASD-Horizontal");
+		switch(mss.pt.GetPhase()){
+		case 1:
+		direction.z = Input.GetAxis ("QE");
 		direction.y = Input.GetAxis ("WASD-Vertical");
-		direction.x = Input.GetAxis ("QE");
+		direction.x = Input.GetAxis ("WASD-Horizontal");
 		direction.Normalize ();
 		direction *= speed * Time.deltaTime;
 		cc.Move (direction);
-		transform.LookAt (transform.position + direction);
+		lookatVector = direction; 
+		lookatVector.y = 0;
+		transform.LookAt (transform.position + lookatVector);
+			break;
+		}
 	}
 }

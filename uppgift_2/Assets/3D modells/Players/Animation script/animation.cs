@@ -1,11 +1,8 @@
-﻿/*
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class animation : MonoBehaviour {
-
+	/*
 	// Use this for initialization
 	void Start () {
 	
@@ -15,8 +12,7 @@ public class animation : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown("theKey"))
 		{
-			animation.Play(run)
 	
 	}
+	*/
 }
-	/*

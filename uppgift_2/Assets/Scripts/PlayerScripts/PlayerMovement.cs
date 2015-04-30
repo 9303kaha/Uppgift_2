@@ -7,38 +7,57 @@ public class PlayerMovement : MonoBehaviour {
 	PlayerSuperScript pss;
 	Rigidbody rb;
 
-	float rotSpeed = 180;
+	Animator anim;
 	Vector3 rotationVector;
 	Transform playerCamera;
 
 	// Use this for initialization
 	void Start () {
 		direction = Vector3.zero;
-		playerCamera = transform.GetChild (0);
 		rotationVector = Vector3.zero;
 		rb = GetComponent<Rigidbody> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	public void Setup(PlayerSuperScript playerSS){
 		pss = playerSS;
 	}
+
+	bool isGrounded(){
+		return Physics.Raycast (transform.position, -Vector3.up, GetComponent<Collider> ().bounds.extents.y + 0.1f);
+	}
+
+	public void PostSetup(){
+		playerCamera = pss.hcs.playerCamera;
+	}
 	// Update is called once per frame
 	void Update () {
+
 		direction.z = pss.cds.getCurState().ThumbSticks.Left.Y;
-		direction.x = pss.cds.getCurState().ThumbSticks.Left.X;
-
+		direction.x = pss.cds.getCurState().ThumbSticks.Left.X; //Reads input from thumbsticks
 		direction.Normalize ();
-		direction *= Time.deltaTime;
+		if (direction.magnitude > 0) {
+			anim.SetBool ("running", true);
+		} else {
+			anim.SetBool("running",false);
+		}
+		rotationVector = pss.hcs.getRotation();
 
-		rotationVector.x = -rotSpeed * pss.cds.getCurState().ThumbSticks.Right.Y;
-		rotationVector.y = rotSpeed * pss.cds.getCurState().ThumbSticks.Right.X;
-		rotationVector *= Time.deltaTime;
-		playerCamera.localEulerAngles = playerCamera.localEulerAngles + rotationVector;
+		transform.rotation = Quaternion.AngleAxis (rotationVector.y, Vector3.up) * transform.rotation;
+		Vector3 travelVector = transform.TransformDirection(direction);
 
-		direction = Quaternion.Euler(playerCamera.localEulerAngles) * direction;
-		direction.y = 0;
+		rb.MovePosition (transform.position + travelVector * Time.deltaTime);
 
-		rb.MovePosition (transform.position + direction);
+		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.X, pss.cds.getCurState().Buttons.X) == 1) {
+			pss.pa.Attack();
+		}
+
+		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.B, pss.cds.getCurState().Buttons.B) == 2) {
+			pss.pa.SpecialEnd();
+		}
+		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.B, pss.cds.getCurState().Buttons.B) == 3) {
+			pss.pa.Special();
+		}
 
 	}
 
@@ -46,7 +65,7 @@ public class PlayerMovement : MonoBehaviour {
 		//(Used mainly for rigidbody interactions that require a fixed update.) 
 
 		//Jumping
-		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.A, pss.cds.getCurState().Buttons.A) == 1) {
+		if (xInputCheckKeyState (pss.cds.getPrevState().Buttons.A, pss.cds.getCurState().Buttons.A) == 1 && isGrounded()) {
 			rb.AddForce(0,7.5f,0,ForceMode.Impulse);
 		}
 

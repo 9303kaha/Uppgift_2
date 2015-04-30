@@ -1,8 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\3D modells\Players\Animation script\animation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerScripts\PlayerRangedAttack.cs">
     <Files>
-      <File FileName="Assets\3D modells\Players\Animation script\animation.cs" Line="3" Column="1" />
+      <File FileName="Assets\Scripts\GenericScripts\Bullet.cs" Line="28" Column="23" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerMeleeAttack.cs" Line="36" Column="36" />
+      <File FileName="Assets\Scripts\MonsterScript\MonsterMovement.cs" Line="20" Column="28" />
+      <File FileName="Assets\Scripts\PlayerScripts\CharacterStat.cs" Line="31" Column="20" />
+      <File FileName="Assets\Scripts\MonsterScript\MonsterStat.cs" Line="36" Column="35" />
+      <File FileName="Assets\Scripts\MonsterScript\MonsterSuperScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerSuperScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI_Script\UI_Health.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI_Script\MousePointer.cs" Line="6" Column="23" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerRangedAttack.cs" Line="27" Column="33" />
+      <File FileName="Assets\Scripts\PlayerScripts\ControllerDetectionScript.cs" Line="36" Column="23" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerMovement.cs" Line="60" Column="4" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerAttack.cs" Line="16" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
