@@ -31,6 +31,17 @@ public class MonsterMovement : MonoBehaviour {
 		lookatVector.y = 0;
 		transform.LookAt (transform.position + lookatVector);
 			break;
+		case 2:
+			direction.z = Input.GetAxis ("QE");
+			direction.y = -4;
+			direction.x = Input.GetAxis ("WASD-Horizontal");
+			direction.Normalize();
+			direction *= speed * Time.deltaTime;
+			cc.Move(direction);
+			lookatVector = direction; 
+			lookatVector.y = 0;
+			transform.LookAt (transform.position + lookatVector);
+			break;
 		}
 	}
 }

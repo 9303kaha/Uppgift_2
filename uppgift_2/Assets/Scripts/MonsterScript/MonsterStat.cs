@@ -33,13 +33,13 @@ public class MonsterStat : MonoBehaviour
 	}
 
 	public void Damage(int damage){
-		print ("Damage taken by bird!");
 		switch (mss.pt.GetPhase ()) {
 		case 1:
 			shield -= damage;
 			if (shield <= 0){
 				health += shield;
 				mss.pt.shiftPhase(); //Shifting into the ground-based Phase 2 of the game
+				print ("Phase Shift!" + mss.pt.GetPhase());
 			}
 			break;
 		case 2:
